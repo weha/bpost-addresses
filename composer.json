@@ -1,5 +1,5 @@
 {
-    "name": "ici-brussels/bpost-addresses",
+    "name": "weha/bpost-addresses",
     "description": "A php class for Bpost addresses validation API",
     "require": {
         "guzzlehttp/guzzle": "^7.0"
