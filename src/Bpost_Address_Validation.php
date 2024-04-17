@@ -1,7 +1,9 @@
 <?php
 class Bpost_Address_Validation
-{ 
-  private function createJson(bool $structured = true, string $StreetName, ?string $StreetNumber = null, ?string $BoxNumber = null, ?int $PostalCode = null, ?string $MunicipalityName = null)
+{
+  private $_address;
+
+  private function createJson(string $StreetName, ?string $StreetNumber = null, ?string $BoxNumber = null, ?int $PostalCode = null, ?string $MunicipalityName = null, bool $structured = true)
   {
       $request = array();
       $request['ValidateAddressesRequest'] = array(
@@ -79,13 +81,13 @@ class Bpost_Address_Validation
 
   public function getAddress_Structured(string $StreetName, string $StreetNumber, ?string $BoxNumber, int $PostalCode, string $MunicipalityName)
   {
-      $request        = $this->createJson(true, $StreetName, $StreetNumber, $BoxNumber, $PostalCode, $MunicipalityName);
+      $request        = $this->createJson($StreetName, $StreetNumber, $BoxNumber, $PostalCode, $MunicipalityName, true);
       $this->_address = $this->doRequest($request);
   }
 
   public function getAddress_Unstructured(string $Address)
   {
-      $request        = $this->createJson(false, $Address);
+      $request        = $this->createJson($Address, null, null, null, null, false);
       $this->_address = $this->doRequest($request);
   }
 
@@ -171,4 +173,3 @@ class Bpost_Address_Validation
   }
 
 }
-?>
